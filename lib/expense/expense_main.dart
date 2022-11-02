@@ -26,6 +26,11 @@ class _ExpenseAppState extends State<ExpenseApp> {
     ),
   ];
 
+  String titleInput = '';
+  String amountInput = '';
+  // final titleController = TextEditingController();
+  // final amountController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -54,12 +59,26 @@ class _ExpenseAppState extends State<ExpenseApp> {
                   children: [
                     TextField(
                       decoration: InputDecoration(labelText: 'Title'),
+                      // controller: titleController,
+                      onChanged: (value) {
+                        setState(() {
+                          titleInput = value;
+                        });
+                      },
                     ),
                     TextField(
                       decoration: InputDecoration(labelText: 'Amount'),
+                      onChanged: ((value) {
+                        setState(() {
+                          amountInput = value;
+                        });
+                      }),
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        // print(titleController.text);
+                        print({titleInput, amountInput});
+                      },
                       style: TextButton.styleFrom(
                         foregroundColor: Colors.purple,
                         textStyle: TextStyle(
