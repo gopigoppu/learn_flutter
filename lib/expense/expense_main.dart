@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'transaction.dart';
+import 'package:intl/intl.dart';
 
 class ExpenseApp extends StatefulWidget {
   const ExpenseApp({super.key});
@@ -32,7 +34,7 @@ class _ExpenseAppState extends State<ExpenseApp> {
           title: Text('Personal Expense'),
         ),
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          // mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
@@ -41,6 +43,33 @@ class _ExpenseAppState extends State<ExpenseApp> {
                 elevation: 10,
                 color: Colors.blue,
                 child: Text('CHART'),
+              ),
+            ),
+            Card(
+              elevation: 5,
+              child: Container(
+                padding: EdgeInsets.all(10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    TextField(
+                      decoration: InputDecoration(labelText: 'Title'),
+                    ),
+                    TextField(
+                      decoration: InputDecoration(labelText: 'Amount'),
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      style: TextButton.styleFrom(
+                        foregroundColor: Colors.purple,
+                        textStyle: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      child: Text('Add Transaction'),
+                    ),
+                  ],
+                ),
               ),
             ),
             Column(
@@ -61,7 +90,7 @@ class _ExpenseAppState extends State<ExpenseApp> {
                         ),
                         padding: EdgeInsets.all(10),
                         child: Text(
-                          tx.amount.toString(),
+                          '\$${tx.amount} ',
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 20,
@@ -79,7 +108,7 @@ class _ExpenseAppState extends State<ExpenseApp> {
                             ),
                           ),
                           Text(
-                            tx.date.toString(),
+                            DateFormat.yMMMd().format(tx.date),
                             style: TextStyle(
                               color: Colors.grey,
                             ),
