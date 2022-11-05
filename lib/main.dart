@@ -15,14 +15,18 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final ThemeData myTheme = ThemeData(
-    primarySwatch: Colors.purple,
-  );
+  // final ThemeData myTheme = ThemeData(
+  //   primarySwatch: Colors.purple,
+  // );
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: myTheme.copyWith(
-          colorScheme: myTheme.colorScheme.copyWith(secondary: Colors.amber)),
+      // theme: ThemeData(
+      //   primarySwatch: Colors.purple,
+      //   fontFamily: 'OpenSans',
+      // ),
+      // .copyWith(
+      // colorScheme: myTheme.colorScheme.copyWith(secondary: Colors.amber)),
       home: ExpenseApp(),
     );
   }
