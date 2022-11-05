@@ -63,19 +63,17 @@ class _QuizAppState extends State<QuizApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Home'),
-        ),
-        body: _questionIndex < _questions.length
-            ? Quiz(
-                questionIndex: _questionIndex,
-                questions: _questions,
-                answerQuestion: _answerQuestion,
-              )
-            : Result(_totalScore, _resetQuiz),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Home'),
       ),
+      body: _questionIndex < _questions.length
+          ? Quiz(
+              questionIndex: _questionIndex,
+              questions: _questions,
+              answerQuestion: _answerQuestion,
+            )
+          : Result(_totalScore, _resetQuiz),
     );
   }
 }
