@@ -88,14 +88,14 @@ class _ExpenseAppState extends State<ExpenseApp> {
             // mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Container(
-                width: double.infinity,
-                child: const Card(
-                  elevation: 10,
-                  color: Colors.blue,
-                  child: Text('CHART'),
-                ),
-              ),
+              // Container(
+              //   width: double.infinity,
+              //   child: const Card(
+              //     elevation: 10,
+              //     color: Colors.blue,
+              //     child: Text('CHART'),
+              //   ),
+              // ),
               Chart(_recentTransactions),
               TransactionList(_userTransactions),
             ],
