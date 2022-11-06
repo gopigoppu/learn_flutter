@@ -21,12 +21,17 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // theme: ThemeData(
-      //   primarySwatch: Colors.purple,
-      //   fontFamily: 'OpenSans',
-      // ),
-      // .copyWith(
-      // colorScheme: myTheme.colorScheme.copyWith(secondary: Colors.amber)),
+      theme: ThemeData(
+        primarySwatch: Colors.purple,
+        fontFamily: 'Quicksand',
+        buttonTheme: ButtonThemeData(
+          textTheme: ButtonTextTheme.primary,
+        ),
+        textTheme: ThemeData.light().textTheme.copyWith(
+                button: TextStyle(
+              color: Colors.white,
+            )),
+      ),
       home: ExpenseApp(),
     );
   }

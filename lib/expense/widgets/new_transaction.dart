@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class NewTransaction extends StatefulWidget {
   final Function addTx;
@@ -13,15 +14,36 @@ class _NewTransactionState extends State<NewTransaction> {
   // String amountInput = '';
   final titleController = TextEditingController();
   final amountController = TextEditingController();
+  DateTime? _selectedDate;
+
   void submitData() {
-    final title = titleController.text;
-    final amount = double.parse(amountController.text);
-    if (title.isEmpty || amount <= 0) {
+    if (amountController.text.isEmpty) {
       return;
     }
-    widget.addTx(title, amount);
+    final title = titleController.text;
+    final amount = double.parse(amountController.text);
+    if (title.isEmpty || amount <= 0 || _selectedDate == null) {
+      return;
+    }
+    widget.addTx(title, amount, _selectedDate);
 
     Navigator.of(context).pop();
+  }
+
+  void _presentDatePicker() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2019),
+      lastDate: DateTime.now(),
+    ).then((pickedDate) {
+      if (pickedDate == null) {
+        return;
+      }
+      setState(() {
+        _selectedDate = pickedDate;
+      });
+    });
   }
 
   @override
@@ -54,7 +76,29 @@ class _NewTransactionState extends State<NewTransaction> {
               //   });
               // }),
             ),
-            TextButton(
+            Container(
+              height: 70,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(_selectedDate == null
+                        ? 'No Date Chosen!'
+                        : 'Picked Date : ${DateFormat.yMd().format(_selectedDate!)}'),
+                  ),
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      foregroundColor: Theme.of(context).primaryColor,
+                    ),
+                    onPressed: _presentDatePicker,
+                    child: Text(
+                      'Choose Date',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            ElevatedButton(
               onPressed: submitData,
               // onPressed: () {
               //   widget.addTx(titleInput, double.parse(amountInput));
@@ -62,8 +106,9 @@ class _NewTransactionState extends State<NewTransaction> {
 
               //   print({titleInput, amountInput});
               // },
-              style: TextButton.styleFrom(
-                foregroundColor: Colors.purple,
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Theme.of(context).textTheme.button?.color,
+                backgroundColor: Theme.of(context).primaryColorDark,
                 textStyle: TextStyle(
                   fontWeight: FontWeight.bold,
                 ),

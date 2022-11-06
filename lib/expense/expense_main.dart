@@ -14,12 +14,13 @@ class ExpenseApp extends StatefulWidget {
 class _ExpenseAppState extends State<ExpenseApp> {
   final List<Transaction> _userTransactions = [];
 
-  void _addNewTransaction(String txTitle, double txAmount) {
+  void _addNewTransaction(
+      String txTitle, double txAmount, DateTime choosenDate) {
     final newTx = Transaction(
       id: DateTime.now().toString(),
       title: txTitle,
       amount: txAmount,
-      date: DateTime.now(),
+      date: choosenDate,
     );
 
     setState(() {
@@ -55,11 +56,17 @@ class _ExpenseAppState extends State<ExpenseApp> {
       theme: ThemeData(
         primarySwatch: Colors.purple,
         fontFamily: 'Quicksand',
+        buttonTheme: ButtonThemeData(
+          textTheme: ButtonTextTheme.normal,
+        ),
         textTheme: ThemeData.light().textTheme.copyWith(
               headline6: const TextStyle(
                 fontFamily: 'OpenSans',
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
+              ),
+              button: TextStyle(
+                color: Colors.purple,
               ),
             ),
         appBarTheme: const AppBarTheme(
