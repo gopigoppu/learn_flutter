@@ -50,6 +50,12 @@ class _ExpenseAppState extends State<ExpenseApp> {
         });
   }
 
+  void _deleteTransaction(String id) {
+    setState(() {
+      _userTransactions.removeWhere((tx) => tx.id == id);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -59,6 +65,7 @@ class _ExpenseAppState extends State<ExpenseApp> {
         buttonTheme: ButtonThemeData(
           textTheme: ButtonTextTheme.normal,
         ),
+        errorColor: Colors.red,
         textTheme: ThemeData.light().textTheme.copyWith(
               headline6: const TextStyle(
                 fontFamily: 'OpenSans',
@@ -104,7 +111,7 @@ class _ExpenseAppState extends State<ExpenseApp> {
               //   ),
               // ),
               Chart(_recentTransactions),
-              TransactionList(_userTransactions),
+              TransactionList(_userTransactions, _deleteTransaction),
             ],
           ),
         ),
