@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './widgets/chart.dart';
 import './widgets/new_transaction.dart';
 import './models/transaction.dart';
 import 'widgets/transaction_list.dart';
@@ -24,6 +25,14 @@ class _ExpenseAppState extends State<ExpenseApp> {
     setState(() {
       _userTransactions.add(newTx);
     });
+  }
+
+  List<Transaction> get _recentTransactions {
+    return _userTransactions.where((tx) {
+      return tx.date.isAfter(DateTime.now().subtract(
+        Duration(days: 7),
+      ));
+    }).toList();
   }
 
   void _startAddNewTransaction(BuildContext ctx) {
@@ -87,6 +96,7 @@ class _ExpenseAppState extends State<ExpenseApp> {
                   child: Text('CHART'),
                 ),
               ),
+              Chart(_recentTransactions),
               TransactionList(_userTransactions),
             ],
           ),
