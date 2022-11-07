@@ -58,6 +58,18 @@ class _ExpenseAppState extends State<ExpenseApp> {
 
   @override
   Widget build(BuildContext context) {
+    final appBar = AppBar(
+      title: const Text(
+        'Personal Expense',
+        // style: TextStyle(fontFamily: 'OpenSans'),
+      ),
+      actions: [
+        IconButton(
+          onPressed: () => _startAddNewTransaction(context),
+          icon: const Icon(Icons.add),
+        )
+      ],
+    );
     return MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.purple,
@@ -85,18 +97,7 @@ class _ExpenseAppState extends State<ExpenseApp> {
         ),
       ),
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            'Personal Expense',
-            // style: TextStyle(fontFamily: 'OpenSans'),
-          ),
-          actions: [
-            IconButton(
-              onPressed: () => _startAddNewTransaction(context),
-              icon: const Icon(Icons.add),
-            )
-          ],
-        ),
+        appBar: appBar,
         body: SingleChildScrollView(
           child: Column(
             // mainAxisAlignment: MainAxisAlignment.start,
@@ -110,8 +111,20 @@ class _ExpenseAppState extends State<ExpenseApp> {
               //     child: Text('CHART'),
               //   ),
               // ),
-              Chart(_recentTransactions),
-              TransactionList(_userTransactions, _deleteTransaction),
+              Container(
+                height: (MediaQuery.of(context).size.height -
+                        appBar.preferredSize.height -
+                        MediaQuery.of(context).padding.top) *
+                    0.3,
+                child: Chart(_recentTransactions),
+              ),
+              Container(
+                  height: (MediaQuery.of(context).size.height -
+                          appBar.preferredSize.height -
+                          MediaQuery.of(context).padding.top) *
+                      0.7,
+                  child:
+                      TransactionList(_userTransactions, _deleteTransaction)),
             ],
           ),
         ),
