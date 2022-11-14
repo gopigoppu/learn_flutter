@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+
 import 'package:learn_udemy/expense/models/transaction.dart';
+import './transaction_item.dart';
 
 class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
@@ -36,37 +37,8 @@ class TransactionList extends StatelessWidget {
           })
         : ListView.builder(
             itemBuilder: (context, index) {
-              return Card(
-                elevation: 5,
-                margin: EdgeInsets.symmetric(vertical: 8, horizontal: 5),
-                child: ListTile(
-                  leading: CircleAvatar(
-                    radius: 30,
-                    child: Padding(
-                      padding: EdgeInsets.all(6),
-                      child: FittedBox(
-                          child: Text('\$${transactions[index].amount}')),
-                    ),
-                  ),
-                  title: Text(
-                    transactions[index].title,
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                  subtitle:
-                      Text(DateFormat.yMMMd().format(transactions[index].date)),
-                  trailing: MediaQuery.of(context).size.width > 460
-                      ? TextButton.icon(
-                          icon: Icon(Icons.delete),
-                          label: Text('Delete'),
-                          onPressed: () => deleteTx(transactions[index].id),
-                        )
-                      : IconButton(
-                          icon: Icon(Icons.delete),
-                          color: Theme.of(context).errorColor,
-                          onPressed: () => deleteTx(transactions[index].id),
-                        ),
-                ),
-              );
+              return TransactionItem(
+                  transactions: transactions[index], deleteTx: deleteTx);
             },
             itemCount: transactions.length,
             // children: transactions.map((tx) {
@@ -74,47 +46,3 @@ class TransactionList extends StatelessWidget {
           );
   }
 }
-
-
-// Card(
-//                   child: Row(
-//                     children: [
-//                       Container(
-//                         margin: const EdgeInsets.symmetric(
-//                           vertical: 10,
-//                           horizontal: 15,
-//                         ),
-//                         decoration: BoxDecoration(
-//                           border: Border.all(
-//                             color: Theme.of(context).primaryColor,
-//                             width: 2,
-//                           ),
-//                         ),
-//                         padding: EdgeInsets.all(10),
-//                         child: Text(
-//                           '\$${transactions[index].amount.toStringAsFixed(2)} ',
-//                           style: TextStyle(
-//                               fontWeight: FontWeight.bold,
-//                               fontSize: 20,
-//                               color: Theme.of(context).primaryColorDark),
-//                         ),
-//                       ),
-//                       Column(
-//                         crossAxisAlignment: CrossAxisAlignment.start,
-//                         children: [
-//                           Text(
-//                             transactions[index].title,
-//                             style: Theme.of(context).textTheme.headline6,
-//                           ),
-//                           Text(
-//                             DateFormat.yMMMd().format(transactions[index].date),
-//                             style: const TextStyle(
-//                               color: Colors.grey,
-//                             ),
-//                           ),
-//                         ],
-//                       ),
-//                     ],
-//                   ),
-//                 );
-              
