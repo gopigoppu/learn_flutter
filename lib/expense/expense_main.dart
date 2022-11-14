@@ -110,38 +110,46 @@ class _ExpenseAppState extends State<ExpenseApp> {
     ];
   }
 
+  ObstructingPreferredSizeWidget IOSnavigationBar() {
+    return CupertinoNavigationBar(
+      middle: Text(
+        'Personal Expense',
+        // style: TextStyle(fontFamily: 'OpenSans'),
+      ),
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          GestureDetector(
+            child: Icon(CupertinoIcons.add),
+            onTap: () => _startAddNewTransaction(context),
+          )
+        ],
+      ),
+    );
+  }
+
+  PreferredSizeWidget androidAppBar() {
+    return AppBar(
+      title: Text(
+        'Personal Expense',
+        // style: TextStyle(fontFamily: 'OpenSans'),
+      ),
+      actions: [
+        IconButton(
+          onPressed: () => _startAddNewTransaction(context),
+          icon: Icon(Icons.add),
+        )
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
     final isLandscape = mediaQuery.orientation == Orientation.landscape;
     final PreferredSizeWidget appBar = Platform.isIOS
-        ? CupertinoNavigationBar(
-            middle: Text(
-              'Personal Expense',
-              // style: TextStyle(fontFamily: 'OpenSans'),
-            ),
-            trailing: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                GestureDetector(
-                  child: Icon(CupertinoIcons.add),
-                  onTap: () => _startAddNewTransaction(context),
-                )
-              ],
-            ),
-          )
-        : AppBar(
-            title: Text(
-              'Personal Expense',
-              // style: TextStyle(fontFamily: 'OpenSans'),
-            ),
-            actions: [
-              IconButton(
-                onPressed: () => _startAddNewTransaction(context),
-                icon: Icon(Icons.add),
-              )
-            ],
-          ) as PreferredSizeWidget;
+        ? IOSnavigationBar()
+        : androidAppBar() as PreferredSizeWidget;
 
     final txListWidget = Container(
         height: (mediaQuery.size.height -
