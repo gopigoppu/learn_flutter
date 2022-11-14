@@ -13,13 +13,16 @@ class ExpenseApp extends StatefulWidget {
   State<ExpenseApp> createState() => _ExpenseAppState();
 }
 
-class _ExpenseAppState extends State<ExpenseApp> {
+class _ExpenseAppState extends State<ExpenseApp> with WidgetsBindingObserver {
   final List<Transaction> _userTransactions = [];
 
   bool _showChart = false;
 
   void _addNewTransaction(
-      String txTitle, double txAmount, DateTime choosenDate) {
+    String txTitle,
+    double txAmount,
+    DateTime choosenDate,
+  ) {
     final newTx = Transaction(
       id: DateTime.now().toString(),
       title: txTitle,
@@ -30,6 +33,25 @@ class _ExpenseAppState extends State<ExpenseApp> {
     setState(() {
       _userTransactions.add(newTx);
     });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    print('didchangeLifecycle');
+    print(state);
+  }
+
+  @override
+  dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
   }
 
   List<Transaction> get _recentTransactions {
@@ -45,9 +67,6 @@ class _ExpenseAppState extends State<ExpenseApp> {
         context: ctx,
         builder: (_) {
           return GestureDetector(
-            onTap: () {
-              print('hello');
-            },
             child: NewTransaction(_addNewTransaction),
             behavior: HitTestBehavior.opaque,
           );
@@ -112,7 +131,7 @@ class _ExpenseAppState extends State<ExpenseApp> {
 
   ObstructingPreferredSizeWidget IOSnavigationBar() {
     return CupertinoNavigationBar(
-      middle: Text(
+      middle: const Text(
         'Personal Expense',
         // style: TextStyle(fontFamily: 'OpenSans'),
       ),
@@ -120,7 +139,7 @@ class _ExpenseAppState extends State<ExpenseApp> {
         mainAxisSize: MainAxisSize.min,
         children: [
           GestureDetector(
-            child: Icon(CupertinoIcons.add),
+            child: const Icon(CupertinoIcons.add),
             onTap: () => _startAddNewTransaction(context),
           )
         ],
@@ -130,14 +149,14 @@ class _ExpenseAppState extends State<ExpenseApp> {
 
   PreferredSizeWidget androidAppBar() {
     return AppBar(
-      title: Text(
+      title: const Text(
         'Personal Expense',
         // style: TextStyle(fontFamily: 'OpenSans'),
       ),
       actions: [
         IconButton(
           onPressed: () => _startAddNewTransaction(context),
-          icon: Icon(Icons.add),
+          icon: const Icon(Icons.add),
         )
       ],
     );
@@ -147,9 +166,8 @@ class _ExpenseAppState extends State<ExpenseApp> {
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
     final isLandscape = mediaQuery.orientation == Orientation.landscape;
-    final PreferredSizeWidget appBar = Platform.isIOS
-        ? IOSnavigationBar()
-        : androidAppBar() as PreferredSizeWidget;
+    final PreferredSizeWidget appBar =
+        Platform.isIOS ? IOSnavigationBar() : androidAppBar();
 
     final txListWidget = Container(
         height: (mediaQuery.size.height -
@@ -157,7 +175,6 @@ class _ExpenseAppState extends State<ExpenseApp> {
                 mediaQuery.padding.top) *
             0.7,
         child: TransactionList(_userTransactions, _deleteTransaction));
-    print(appBar.preferredSize.height);
 
     final pageBody = SafeArea(
       child: SingleChildScrollView(
@@ -177,7 +194,7 @@ class _ExpenseAppState extends State<ExpenseApp> {
       theme: ThemeData(
         primarySwatch: Colors.purple,
         fontFamily: 'Quicksand',
-        buttonTheme: ButtonThemeData(
+        buttonTheme: const ButtonThemeData(
           textTheme: ButtonTextTheme.normal,
         ),
         errorColor: Colors.red,
@@ -187,7 +204,7 @@ class _ExpenseAppState extends State<ExpenseApp> {
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
               ),
-              button: TextStyle(
+              button: const TextStyle(
                 color: Colors.purple,
               ),
             ),
@@ -211,7 +228,7 @@ class _ExpenseAppState extends State<ExpenseApp> {
               floatingActionButton: Platform.isIOS
                   ? Container()
                   : FloatingActionButton(
-                      child: Icon(Icons.add),
+                      child: const Icon(Icons.add),
                       onPressed: () => _startAddNewTransaction(context),
                     ),
             ),
