@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
+import './meals/meals_main.dart';
 import 'expense/expense_main.dart';
 import 'quiz/quiz_app_main.dart';
 
@@ -12,6 +12,34 @@ void main() {
   runApp(MyApp());
 }
 
+ThemeData expenseTheme() {
+  return ThemeData(
+    primarySwatch: Colors.purple,
+    fontFamily: 'Quicksand',
+    buttonTheme: const ButtonThemeData(
+      textTheme: ButtonTextTheme.primary,
+    ),
+    textTheme: ThemeData.light().textTheme.copyWith(
+            button: const TextStyle(
+          color: Colors.white,
+        )),
+  );
+}
+
+ThemeData mealsTheme() {
+  return ThemeData(
+    primarySwatch: Colors.purple,
+    fontFamily: 'Quicksand',
+    buttonTheme: const ButtonThemeData(
+      textTheme: ButtonTextTheme.primary,
+    ),
+    textTheme: ThemeData.light().textTheme.copyWith(
+            button: const TextStyle(
+          color: Colors.white,
+        )),
+  );
+}
+
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
@@ -20,24 +48,11 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  // final ThemeData myTheme = ThemeData(
-  //   primarySwatch: Colors.purple,
-  // );
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.purple,
-        fontFamily: 'Quicksand',
-        buttonTheme: ButtonThemeData(
-          textTheme: ButtonTextTheme.primary,
-        ),
-        textTheme: ThemeData.light().textTheme.copyWith(
-                button: TextStyle(
-              color: Colors.white,
-            )),
-      ),
-      home: ExpenseApp(),
+      theme: mealsTheme(),
+      home: MealsApp(),
     );
   }
 }
