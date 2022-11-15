@@ -28,15 +28,16 @@ ThemeData expenseTheme() {
 
 ThemeData mealsTheme() {
   return ThemeData(
-    primarySwatch: Colors.purple,
+    primarySwatch: Colors.red,
     fontFamily: 'Quicksand',
     buttonTheme: const ButtonThemeData(
       textTheme: ButtonTextTheme.primary,
     ),
     textTheme: ThemeData.light().textTheme.copyWith(
-            button: const TextStyle(
-          color: Colors.white,
-        )),
+          button: const TextStyle(
+            color: Colors.white,
+          ),
+        ),
   );
 }
 

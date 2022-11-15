@@ -10,6 +10,13 @@ class MealsApp extends StatefulWidget {
 class _MealsAppState extends State<MealsApp> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('DeliMeals'),
+      ),
+      body: Center(
+        child: Text('Navigation Time!'),
+      ),
+    );
   }
 }
