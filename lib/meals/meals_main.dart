@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './widgets/categories_screen.dart';
 
 class MealsApp extends StatefulWidget {
   const MealsApp({super.key});
@@ -14,9 +15,7 @@ class _MealsAppState extends State<MealsApp> {
       appBar: AppBar(
         title: Text('DeliMeals'),
       ),
-      body: Center(
-        child: Text('Navigation Time!'),
-      ),
+      body: CategoriesScreen(),
     );
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import './meals/meals_main.dart';
 import 'expense/expense_main.dart';
+import 'meals/widgets/categories_screen.dart';
 import 'quiz/quiz_app_main.dart';
 
 void main() {
@@ -27,18 +28,36 @@ ThemeData expenseTheme() {
 }
 
 ThemeData mealsTheme() {
-  return ThemeData(
-    primarySwatch: Colors.red,
-    fontFamily: 'Quicksand',
-    buttonTheme: const ButtonThemeData(
-      textTheme: ButtonTextTheme.primary,
+  final theme = ThemeData(
+    // primarySwatch: Colors.pink,
+    colorScheme: ColorScheme.fromSwatch().copyWith(
+      primary: Colors.pink,
+      secondary: Colors.amber,
     ),
+    canvasColor: const Color.fromRGBO(255, 254, 229, 1),
+    fontFamily: 'Raleway',
     textTheme: ThemeData.light().textTheme.copyWith(
-          button: const TextStyle(
-            color: Colors.white,
+          bodyText1: const TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
+          bodyText2: const TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
+          headline6: const TextStyle(
+            fontFamily: 'RobotoCondensed',
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
           ),
         ),
+    buttonTheme: const ButtonThemeData(
+      textTheme: ButtonTextTheme.normal,
+    ),
+    errorColor: Colors.red,
+    appBarTheme: const AppBarTheme(
+      titleTextStyle: TextStyle(
+        fontFamily: 'RobotoCondensed',
+        fontWeight: FontWeight.bold,
+        fontSize: 20,
+      ),
+    ),
   );
+  return theme;
 }
 
 class MyApp extends StatefulWidget {
@@ -53,7 +72,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: mealsTheme(),
-      home: MealsApp(),
+      home: CategoriesScreen(),
     );
   }
 }
