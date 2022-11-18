@@ -13,7 +13,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Meals')),
+      appBar: AppBar(title: const Text('DeliMeals')),
       body: GridView(
         padding: const EdgeInsets.all(25),
         gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
@@ -23,7 +23,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           mainAxisSpacing: 20,
         ),
         children: DUMMY_CATEGORIES
-            .map((catData) => CategoryItem(catData.title, catData.color))
+            .map((catData) =>
+                CategoryItem(catData.id, catData.title, catData.color))
             .toList(),
       ),
     );
