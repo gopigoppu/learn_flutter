@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learn_udemy/meals/widgets/category_meals_screen.dart';
 
 import './meals/meals_main.dart';
 import 'expense/expense_main.dart';
@@ -72,7 +73,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: mealsTheme(),
-      home: CategoriesScreen(),
+      home: MealsApp(),
     );
   }
 }
