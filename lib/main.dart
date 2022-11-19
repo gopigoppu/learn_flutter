@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:learn_udemy/meals/widgets/category_meals_screen.dart';
+import 'package:learn_udemy/meals/screens/category_meals_screen.dart';
 
 import './meals/meals_main.dart';
 import 'expense/expense_main.dart';
-import 'meals/widgets/categories_screen.dart';
+import 'meals/screens/categories_screen.dart';
 import 'quiz/quiz_app_main.dart';
 
 void main() {

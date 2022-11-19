@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import './screens/meal_detail_screen.dart';
 import '../main.dart';
-import 'widgets/categories_screen.dart';
-import 'widgets/category_meals_screen.dart';
+import 'screens/categories_screen.dart';
+import 'screens/category_meals_screen.dart';
 
 class MealsApp extends StatefulWidget {
   const MealsApp({super.key});
@@ -16,7 +17,21 @@ class _MealsAppState extends State<MealsApp> {
     return MaterialApp(
       theme: mealsTheme(),
       home: CategoriesScreen(),
-      routes: {'/category-meals': (ctx) => CategoryMealsScreen()},
+      routes: {
+        // '/': (ctx) => CategoryMealsScreen(),
+        CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(),
+        MealDetailScreen.routeName: (ctx) => MealDetailScreen(),
+      },
+      onGenerateRoute: (settings) {
+        print(settings.arguments);
+        print(settings.name);
+
+        return MaterialPageRoute(builder: (ctx) => CategoriesScreen());
+      },
+      onUnknownRoute: (settings) {
+        // show generic error page
+        return MaterialPageRoute(builder: (ctx) => CategoriesScreen());
+      },
     );
   }
 }
