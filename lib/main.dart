@@ -26,7 +26,7 @@ ThemeData expenseTheme() {
 
 ThemeData mealsTheme() {
   final theme = ThemeData(
-    // primarySwatch: Colors.pink,
+    primarySwatch: Colors.pink,
     colorScheme: ColorScheme.fromSwatch().copyWith(
       primary: Colors.pink,
       secondary: Colors.amber,
@@ -68,7 +68,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: mealsTheme(),
+      // theme: mealsTheme(),
       home: MealsApp(),
     );
   }
