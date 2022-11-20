@@ -14,8 +14,9 @@ class CategoryMealsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final routeArgs =
-        ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
+        ModalRoute.of(context)!.settings.arguments as Map<String, Object>;
     // print(routeArgs);
+    // if(routeArgs != null)
     final categoryTitle = routeArgs['title'] as String;
     final categoryId = routeArgs['id'] as String;
     final color = routeArgs['color'] as MaterialColor;

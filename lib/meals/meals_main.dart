@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learn_udemy/meals/screens/tabs_screen.dart';
 import './screens/meal_detail_screen.dart';
 import '../main.dart';
 import 'screens/categories_screen.dart';
@@ -16,9 +17,9 @@ class _MealsAppState extends State<MealsApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: mealsTheme(),
-      home: CategoriesScreen(),
+      initialRoute: '/',
       routes: {
-        // '/': (ctx) => CategoryMealsScreen(),
+        '/': (ctx) => TabsScreen(),
         CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(),
         MealDetailScreen.routeName: (ctx) => MealDetailScreen(),
       },
