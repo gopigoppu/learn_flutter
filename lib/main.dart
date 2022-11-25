@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:learn_udemy/shop/shop_app_main.dart';
+import './shop/shop_app_main.dart';
 
 import './meals/meals_main.dart';
 
