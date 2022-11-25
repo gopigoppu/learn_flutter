@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './screens/product_detail_screen.dart';
 import './screens/products_overview_screen.dart';
 import '../main.dart';
 
@@ -15,6 +16,9 @@ class _ShopAppState extends State<ShopApp> {
     return MaterialApp(
       theme: shopTheme(),
       home: ProductsOverveiwScreen(),
+      routes: {
+        ProductDetailScreen.routeName: (ctx) => ProductDetailScreen(),
+      },
       // home: Scaffold(
       //   appBar: AppBar(
       //     title: Text('ShopApp'),
