@@ -63,15 +63,15 @@ ThemeData shopTheme() {
     primarySwatch: Colors.purple,
     colorScheme: ColorScheme.fromSwatch().copyWith(
       primary: Colors.purple,
-      secondary: Colors.amber,
+      secondary: Colors.deepOrange,
     ),
     canvasColor: const Color.fromRGBO(255, 254, 229, 1),
-    fontFamily: 'Raleway',
+    fontFamily: 'Lato',
     textTheme: ThemeData.light().textTheme.copyWith(
           bodyText1: const TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
           bodyText2: const TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
           headline6: const TextStyle(
-            fontFamily: 'RobotoCondensed',
+            fontFamily: 'Anton',
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
@@ -82,7 +82,7 @@ ThemeData shopTheme() {
     errorColor: Colors.red,
     appBarTheme: const AppBarTheme(
       titleTextStyle: TextStyle(
-        fontFamily: 'RobotoCondensed',
+        fontFamily: 'Lato',
         fontWeight: FontWeight.bold,
         fontSize: 20,
       ),
