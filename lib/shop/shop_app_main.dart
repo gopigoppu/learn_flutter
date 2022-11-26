@@ -16,8 +16,9 @@ class ShopApp extends StatefulWidget {
 class _ShopAppState extends State<ShopApp> {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (BuildContext context) => Products(),
+    return ChangeNotifierProvider.value(
+      // create: (BuildContext context) => Products(),
+      value: Products(),
       child: MaterialApp(
         theme: shopTheme(),
         home: ProductsOverveiwScreen(),
