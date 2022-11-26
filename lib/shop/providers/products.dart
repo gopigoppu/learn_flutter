@@ -9,6 +9,10 @@ class Products with ChangeNotifier {
     return [..._items];
   }
 
+  Product findById(productId) {
+    return _items.firstWhere((prod) => prod.id == productId);
+  }
+
   void addProduct() {
     // _items.add(value);
     notifyListeners();
