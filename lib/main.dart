@@ -102,7 +102,8 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // theme: mealsTheme(),
+      // theme: shopTheme(),
+      debugShowCheckedModeBanner: false,
       home: ShopApp(),
     );
   }

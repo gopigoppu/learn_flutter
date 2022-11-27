@@ -19,10 +19,11 @@ class _ShopAppState extends State<ShopApp> {
     return ChangeNotifierProvider(
       create: (BuildContext context) => Products(),
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         theme: shopTheme(),
         home: ProductsOverveiwScreen(),
         routes: {
-          ProductDetailScreen.routeName: (ctx) => ProductDetailScreen(),
+          ProductDetailScreen.routeName: (context) => ProductDetailScreen(),
         },
         // home: Scaffold(
         //   appBar: AppBar(
