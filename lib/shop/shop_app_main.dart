@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import './screens/product_detail_screen.dart';
 import './screens/products_overview_screen.dart';
 import '../main.dart';
+import './providers/cart.dart';
 import './providers/products.dart';
 
 class ShopApp extends StatefulWidget {
@@ -16,8 +17,15 @@ class ShopApp extends StatefulWidget {
 class _ShopAppState extends State<ShopApp> {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (BuildContext context) => Products(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (BuildContext context) => Products(),
+        ),
+        ChangeNotifierProvider(
+          create: (BuildContext context) => Cart(),
+        ),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: shopTheme(),
