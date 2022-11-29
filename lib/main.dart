@@ -79,6 +79,9 @@ ThemeData shopTheme() {
     buttonTheme: const ButtonThemeData(
       textTheme: ButtonTextTheme.normal,
     ),
+    primaryTextTheme: TextTheme(
+      headline6: TextStyle(color: Colors.white),
+    ),
     errorColor: Colors.red,
     appBarTheme: const AppBarTheme(
       titleTextStyle: TextStyle(

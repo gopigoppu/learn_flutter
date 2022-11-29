@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import './screens/cart_screen.dart';
 import './screens/product_detail_screen.dart';
 import './screens/products_overview_screen.dart';
 import '../main.dart';
@@ -32,6 +33,7 @@ class _ShopAppState extends State<ShopApp> {
         home: ProductsOverveiwScreen(),
         routes: {
           ProductDetailScreen.routeName: (context) => ProductDetailScreen(),
+          CartScreen.routeName: (context) => CartScreen(),
         },
         // home: Scaffold(
         //   appBar: AppBar(
