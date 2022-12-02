@@ -7,6 +7,8 @@ import './screens/products_overview_screen.dart';
 import '../main.dart';
 import './providers/cart.dart';
 import './providers/products.dart';
+import './providers/orders.dart';
+import './screens/orders_screen.dart';
 
 class ShopApp extends StatefulWidget {
   const ShopApp({super.key});
@@ -26,6 +28,9 @@ class _ShopAppState extends State<ShopApp> {
         ChangeNotifierProvider(
           create: (BuildContext context) => Cart(),
         ),
+        ChangeNotifierProvider(
+          create: (BuildContext context) => Orders(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -34,6 +39,7 @@ class _ShopAppState extends State<ShopApp> {
         routes: {
           ProductDetailScreen.routeName: (context) => ProductDetailScreen(),
           CartScreen.routeName: (context) => CartScreen(),
+          OrdersScreen.routeName: (context) => OrdersScreen(),
         },
         // home: Scaffold(
         //   appBar: AppBar(
