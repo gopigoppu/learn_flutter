@@ -9,6 +9,7 @@ import './providers/cart.dart';
 import './providers/products.dart';
 import './providers/orders.dart';
 import './screens/orders_screen.dart';
+import './screens/user_products_screen.dart';
 
 class ShopApp extends StatefulWidget {
   const ShopApp({super.key});
@@ -40,6 +41,7 @@ class _ShopAppState extends State<ShopApp> {
           ProductDetailScreen.routeName: (context) => ProductDetailScreen(),
           CartScreen.routeName: (context) => CartScreen(),
           OrdersScreen.routeName: (context) => OrdersScreen(),
+          UserProductsScreen.routeName: (context) => UserProductsScreen(),
         },
         // home: Scaffold(
         //   appBar: AppBar(
