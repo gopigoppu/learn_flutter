@@ -84,12 +84,6 @@ class _EditProductScreenState extends State<EditProductScreen> {
     }
     _form.currentState!.save();
 
-    // print(DateTime.now().toString());
-    // print(_editedProduct.id);
-    // print(_editedProduct.title);
-    // print(_editedProduct.price);
-    // print(_editedProduct.description);
-    // print(_editedProduct.imageUrl);
     if (!_editedProduct.id.isEmpty) {
       Provider.of<Products>(context, listen: false)
           .updateProduct(_editedProduct.id, _editedProduct);

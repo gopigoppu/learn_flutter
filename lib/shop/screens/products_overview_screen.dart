@@ -41,15 +41,15 @@ class _ProductsOverveiwScreenState extends State<ProductsOverveiwScreen> {
                 }
               });
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.more_vert,
             ),
             itemBuilder: (context) => [
-              PopupMenuItem(
+              const PopupMenuItem(
                 child: Text('Only Favorites'),
                 value: FilterOptions.Favorites,
               ),
-              PopupMenuItem(
+              const PopupMenuItem(
                 child: Text('Show All'),
                 value: FilterOptions.All,
               ),
@@ -62,7 +62,7 @@ class _ProductsOverveiwScreenState extends State<ProductsOverveiwScreen> {
               child: ch as Widget,
             ),
             child: IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.shopping_cart,
               ),
               onPressed: () {
