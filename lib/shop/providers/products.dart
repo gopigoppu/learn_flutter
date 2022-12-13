@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 import '../models/PRODUCT_DATA.dart';
 import './product.dart';
 
 class Products with ChangeNotifier {
   List<Product> _items = productsListData;
+  final firebaseUrl = 'https://learn-flutter-743af-default-rtdb.firebaseio.com';
 
   // bool _showFavoritesOnly = false;
 
@@ -33,6 +36,15 @@ class Products with ChangeNotifier {
   // }
 
   void addProduct(Product product) {
+    final url = Uri.parse('${firebaseUrl}/products.json');
+    http.post(url,
+        body: json.encode({
+          'title': product.title,
+          'description': product.description,
+          'imageUrl': product.imageUrl,
+          'price': product.price,
+          'isFavorite': product.isFavorite,
+        }));
     final newProduct = Product(
       id: DateTime.now().toString(),
       title: product.title,
