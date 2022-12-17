@@ -5,7 +5,7 @@ import '../models/PRODUCT_DATA.dart';
 import './product.dart';
 
 class Products with ChangeNotifier {
-  List<Product> _items = productsListData;
+  List<Product> _items = [];
   final firebaseUrl = 'https://learn-flutter-743af-default-rtdb.firebaseio.com';
 
   // bool _showFavoritesOnly = false;
@@ -34,6 +34,31 @@ class Products with ChangeNotifier {
   //   _showFavoritesOnly = false;
   //   notifyListeners();
   // }
+
+  Future<void> fetchAndSetProducts() async {
+    final url = Uri.parse('${firebaseUrl}/products.json');
+    try {
+      final response = await http.get(url);
+      final List<Product> loadedProducts = [];
+      final extractedData = json.decode(response.body) as Map<String, dynamic>;
+      extractedData.forEach((prodId, prodData) {
+        loadedProducts.add(Product(
+          id: prodId,
+          title: prodData['title'],
+          description: prodData['description'],
+          price: prodData['price'],
+          isFavorite: prodData['isFavorite'],
+          imageUrl: prodData['imageUrl'],
+        ));
+      });
+      _items = loadedProducts;
+      notifyListeners();
+      print(json.decode(response.body));
+    } catch (error) {
+      print(error);
+      throw (error);
+    }
+  }
 
   Future<void> addProduct(Product product) async {
     final url = Uri.parse('${firebaseUrl}/products.json');
