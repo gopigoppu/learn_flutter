@@ -45,6 +45,7 @@ ThemeData mealsTheme() {
         ),
     buttonTheme: const ButtonThemeData(
       textTheme: ButtonTextTheme.normal,
+      buttonColor: Colors.white,
     ),
     errorColor: Colors.red,
     appBarTheme: const AppBarTheme(
@@ -78,6 +79,7 @@ ThemeData shopTheme() {
         ),
     buttonTheme: const ButtonThemeData(
       textTheme: ButtonTextTheme.normal,
+      buttonColor: Colors.white,
     ),
     primaryTextTheme: TextTheme(
       headline6: TextStyle(color: Colors.white),
