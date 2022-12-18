@@ -16,21 +16,30 @@ class OrdersScreen extends StatefulWidget {
 
 class _OrdersScreenState extends State<OrdersScreen> {
   bool _isLoading = false;
+
+  late Future _ordersFuture;
+
+  Future _obtainOrdersFuture() {
+    return Provider.of<Orders>(context, listen: false).fetchAndSetOrders();
+  }
+
   @override
   void initState() {
+    _ordersFuture = _obtainOrdersFuture();
     // TODO: implement initState
-    Future.delayed(Duration.zero).then((_) async {
-      // setState(() {
-      // _isLoading = true;
-      // });
-      // await Provider.of<Orders>(context, listen: false)
-      //     .fetchAndSetOrders()
-      //     .then((_) {
-      //   setState(() {
-      //     _isLoading = false;
-      //   });
-      // });
-    });
+    // Future.delayed(Duration.zero).then((_) async {
+
+    // setState(() {
+    // _isLoading = true;
+    // });
+    // await Provider.of<Orders>(context, listen: false)
+    //     .fetchAndSetOrders()
+    //     .then((_) {
+    //   setState(() {
+    //     _isLoading = false;
+    //   });
+    // });
+    // });
     super.initState();
   }
 
@@ -44,8 +53,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
         ),
         drawer: AppDrawer(),
         body: FutureBuilder(
-          future:
-              Provider.of<Orders>(context, listen: false).fetchAndSetOrders(),
+          future: _ordersFuture,
           builder: (ctx, dataSnapshot) {
             if (dataSnapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
