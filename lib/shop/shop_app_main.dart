@@ -40,8 +40,11 @@ class _ShopAppState extends State<ShopApp> {
         ChangeNotifierProvider(
           create: (context) => Cart(),
         ),
-        ChangeNotifierProvider(
-          create: (context) => Orders(),
+        ChangeNotifierProxyProvider<Auth, Orders>(
+          create: (context) => Orders('', []),
+          update: (context, auth, previousOrders) => Orders(
+              auth.token as String,
+              (previousOrders == null ? [] : previousOrders.orders)),
         ),
       ],
       child: Consumer<Auth>(

@@ -25,8 +25,8 @@ class Product with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> toggleFavoriteStatus() async {
-    final url = Uri.parse('$firebaseUrl/products/$id.json');
+  Future<void> toggleFavoriteStatus(String authToken) async {
+    final url = Uri.parse('$firebaseUrl/products/$id.json?auth=$authToken');
     final oldStatus = isFavorite;
 
     isFavorite = !isFavorite;
