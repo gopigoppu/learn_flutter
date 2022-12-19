@@ -8,6 +8,7 @@ import './providers/products.dart';
 import './providers/orders.dart';
 import './providers/auth.dart';
 
+import './screens/products_overview_screen.dart';
 import './screens/cart_screen.dart';
 import './screens/product_detail_screen.dart';
 import './screens/orders_screen.dart';
@@ -28,38 +29,43 @@ class _ShopAppState extends State<ShopApp> {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (BuildContext context) => Products(),
+          create: (context) => Auth(),
+        ),
+        ChangeNotifierProxyProvider<Auth, Products>(
+          create: (context) => Products('', []),
+          update: (context, auth, previousProducts) => Products(
+              auth.token as String,
+              (previousProducts == null ? [] : previousProducts.items)),
         ),
         ChangeNotifierProvider(
-          create: (BuildContext context) => Cart(),
+          create: (context) => Cart(),
         ),
         ChangeNotifierProvider(
-          create: (BuildContext context) => Orders(),
-        ),
-        ChangeNotifierProvider(
-          create: (BuildContext context) => Auth(),
+          create: (context) => Orders(),
         ),
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: shopTheme(),
-        home: AuthScreen(),
-        routes: {
-          ProductDetailScreen.routeName: (context) => ProductDetailScreen(),
-          CartScreen.routeName: (context) => CartScreen(),
-          OrdersScreen.routeName: (context) => OrdersScreen(),
-          UserProductsScreen.routeName: (context) => UserProductsScreen(),
-          EditProductScreen.routeName: (context) => EditProductScreen(),
-          // AuthScreen.routeName: (context) => AuthScreen(),
-        },
-        // home: Scaffold(
-        //   appBar: AppBar(
-        //     title: Text('ShopApp'),
-        //   ),
-        //   body: Center(
-        //     child: Text('Shop Text'),
-        //   ),
-        // ),
+      child: Consumer<Auth>(
+        builder: (ctx, auth, _) => MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: shopTheme(),
+          home: auth.isAuth ? ProductsOverveiwScreen() : AuthScreen(),
+          routes: {
+            ProductDetailScreen.routeName: (context) => ProductDetailScreen(),
+            CartScreen.routeName: (context) => CartScreen(),
+            OrdersScreen.routeName: (context) => OrdersScreen(),
+            UserProductsScreen.routeName: (context) => UserProductsScreen(),
+            EditProductScreen.routeName: (context) => EditProductScreen(),
+            // AuthScreen.routeName: (context) => AuthScreen(),
+          },
+          // home: Scaffold(
+          //   appBar: AppBar(
+          //     title: Text('ShopApp'),
+          //   ),
+          //   body: Center(
+          //     child: Text('Shop Text'),
+          //   ),
+          // ),
+        ),
       ),
     );
   }

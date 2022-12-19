@@ -3,10 +3,25 @@ import 'dart:convert';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 
+import '../models/http_exception.dart';
+
 class Auth with ChangeNotifier {
-  late final String _token;
-  late final DateTime _expiryDate;
-  late final String _userId;
+  String? _token;
+  DateTime? _expiryDate;
+  String? _userId;
+
+  bool get isAuth {
+    return token != null;
+  }
+
+  String? get token {
+    if (_expiryDate != null &&
+        (_expiryDate as DateTime).isAfter(DateTime.now()) &&
+        _token != null) {
+      return _token;
+    }
+    return null;
+  }
 
   final String firebaseUrl =
       'https://identitytoolkit.googleapis.com/v1/accounts:';
@@ -29,6 +44,17 @@ class Auth with ChangeNotifier {
         ),
       );
       print(json.decode(response.body));
+
+      final responseData = json.decode(response.body);
+      if (responseData['error'] != null) {
+        throw HttpException(responseData['error']['message']);
+      }
+      _token = responseData['idToken'];
+      _userId = responseData['localId'];
+      _expiryDate = DateTime.now().add(
+        Duration(seconds: int.parse(responseData['expiresIn'])),
+      );
+      notifyListeners();
     } catch (error) {
       throw error;
     }
