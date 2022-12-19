@@ -32,9 +32,10 @@ class _ShopAppState extends State<ShopApp> {
           create: (context) => Auth(),
         ),
         ChangeNotifierProxyProvider<Auth, Products>(
-          create: (context) => Products('', []),
+          create: (context) => Products('', '', []),
           update: (context, auth, previousProducts) => Products(
               auth.token as String,
+              auth.userId as String,
               (previousProducts == null ? [] : previousProducts.items)),
         ),
         ChangeNotifierProvider(

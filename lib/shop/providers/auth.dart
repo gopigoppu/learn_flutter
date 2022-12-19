@@ -23,6 +23,10 @@ class Auth with ChangeNotifier {
     return null;
   }
 
+  String? get userId {
+    return _userId;
+  }
+
   final String firebaseUrl =
       'https://identitytoolkit.googleapis.com/v1/accounts:';
   final String projK = 'AIzaSyArZkfV9Jlw2pQxsEH-WwwOQR6Rx5rKdEY';
