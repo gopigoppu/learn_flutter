@@ -15,6 +15,7 @@ import './screens/orders_screen.dart';
 import './screens/user_products_screen.dart';
 import './screens/edit_product_screen.dart';
 import './screens/auth_screen.dart';
+import './screens/splash_screen.dart';
 
 class ShopApp extends StatefulWidget {
   const ShopApp({super.key});
@@ -53,7 +54,16 @@ class _ShopAppState extends State<ShopApp> {
         builder: (ctx, auth, _) => MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: shopTheme(),
-          home: auth.isAuth ? ProductsOverveiwScreen() : AuthScreen(),
+          home: auth.isAuth
+              ? ProductsOverveiwScreen()
+              : FutureBuilder(
+                  builder: ((ctx, authResultSnapshot) =>
+                      (authResultSnapshot.connectionState ==
+                              ConnectionState.waiting)
+                          ? SplashScreen()
+                          : AuthScreen()),
+                  future: auth.tryAutoLogin(),
+                ),
           routes: {
             ProductDetailScreen.routeName: (context) => ProductDetailScreen(),
             CartScreen.routeName: (context) => CartScreen(),
