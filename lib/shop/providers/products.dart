@@ -10,8 +10,8 @@ class Products with ChangeNotifier {
   final firebaseUrl = 'https://learn-flutter-743af-default-rtdb.firebaseio.com';
 
   // bool _showFavoritesOnly = false;
-  final String authToken;
-  final String userId;
+  final String? authToken;
+  final String? userId;
 
   Products(this.authToken, this.userId, this._items);
 
@@ -40,8 +40,11 @@ class Products with ChangeNotifier {
   //   notifyListeners();
   // }
 
-  Future<void> fetchAndSetProducts() async {
-    final url = Uri.parse('${firebaseUrl}/products.json?auth=$authToken');
+  Future<void> fetchAndSetProducts([bool filterByUser = false]) async {
+    final filterString =
+        filterByUser ? 'orderBy="creatorId"&equalTo="$userId"' : '';
+    final url =
+        Uri.parse('$firebaseUrl/products.json?auth=$authToken&$filterString');
     try {
       final response = await http.get(url);
       final List<Product> loadedProducts = [];
@@ -74,7 +77,7 @@ class Products with ChangeNotifier {
   }
 
   Future<void> addProduct(Product product) async {
-    final url = Uri.parse('${firebaseUrl}/products.json?auth=$authToken');
+    final url = Uri.parse('$firebaseUrl/products.json?auth=$authToken');
     try {
       final response = await http.post(
         url,
@@ -84,6 +87,7 @@ class Products with ChangeNotifier {
             'description': product.description,
             'imageUrl': product.imageUrl,
             'price': product.price,
+            'creatorId': userId,
             // 'isFavorite': product.isFavorite,
           },
         ),
