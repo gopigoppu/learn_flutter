@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import './shop/shop_app_main.dart';
 
 import './meals/meals_main.dart';
+import 'shop/helpers/custom_route.dart';
 
 void main() {
   // WidgetsFlutterBinding.ensureInitialized();
@@ -62,6 +63,10 @@ ThemeData mealsTheme() {
 ThemeData shopTheme() {
   final theme = ThemeData(
     primarySwatch: Colors.purple,
+    // pageTransitionsTheme: PageTransitionsTheme(builders: {
+    //   TargetPlatform.android: CustomPageTransistionBuilder(),
+    //   TargetPlatform.iOS: CustomPageTransistionBuilder(),
+    // }),
     colorScheme: ColorScheme.fromSwatch().copyWith(
       primary: Colors.purple,
       secondary: Colors.deepOrange,
