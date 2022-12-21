@@ -70,17 +70,22 @@ class ProductItem extends StatelessWidget {
           ),
         ),
         child: GestureDetector(
-          onTap: () {
-            Navigator.of(context).pushNamed(
-              ProductDetailScreen.routeName,
-              arguments: product.id,
-            );
-          },
-          child: Image.network(
-            product.imageUrl,
-            fit: BoxFit.cover,
-          ),
-        ),
+            onTap: () {
+              Navigator.of(context).pushNamed(
+                ProductDetailScreen.routeName,
+                arguments: product.id,
+              );
+            },
+            child: FadeInImage(
+              image: NetworkImage(product.imageUrl),
+              placeholder: AssetImage('assets/images/product-placeholder.png'),
+              fit: BoxFit.cover,
+            )
+            //  Image.network(
+            //   product.imageUrl,
+            //   fit: BoxFit.cover,
+            // ),
+            ),
       ),
     );
   }
