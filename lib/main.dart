@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import './shop/shop_app_main.dart';
 
 import './meals/meals_main.dart';
+import './greatPlaces/great_places_app_main.dart';
 import 'shop/helpers/custom_route.dart';
 
 void main() {
@@ -101,6 +102,43 @@ ThemeData shopTheme() {
   return theme;
 }
 
+ThemeData greatPlacesTheme() {
+  final theme = ThemeData(
+    primarySwatch: Colors.indigo,
+    colorScheme: ColorScheme.fromSwatch().copyWith(
+      primary: Colors.indigo,
+      secondary: Colors.amber,
+    ),
+    canvasColor: const Color.fromRGBO(255, 254, 229, 1),
+    fontFamily: 'Lato',
+    textTheme: ThemeData.light().textTheme.copyWith(
+          bodyText1: const TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
+          bodyText2: const TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
+          headline6: const TextStyle(
+            fontFamily: 'Anton',
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+    buttonTheme: const ButtonThemeData(
+      textTheme: ButtonTextTheme.normal,
+      buttonColor: Colors.white,
+    ),
+    primaryTextTheme: const TextTheme(
+      headline6: TextStyle(color: Colors.white),
+    ),
+    errorColor: Colors.red,
+    appBarTheme: const AppBarTheme(
+      titleTextStyle: TextStyle(
+        fontFamily: 'Lato',
+        fontWeight: FontWeight.bold,
+        fontSize: 20,
+      ),
+    ),
+  );
+  return theme;
+}
+
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
@@ -114,7 +152,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       // theme: shopTheme(),
       debugShowCheckedModeBanner: false,
-      home: ShopApp(),
+      home: GreatPlacesApp(),
     );
   }
 }
