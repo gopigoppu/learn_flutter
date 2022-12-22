@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../main.dart';
+
 import './providers/great_places.dart';
 
+import './screens/add_place_screen.dart';
 import './screens/places_list_screen.dart';
 
 class GreatPlacesApp extends StatefulWidget {
@@ -20,6 +23,10 @@ class _GreatPlacesAppState extends State<GreatPlacesApp> {
       child: MaterialApp(
         title: 'Great Places',
         home: PlacesListScreen(),
+        theme: greatPlacesTheme(),
+        routes: {
+          AddPlaceScreen.routeName: (ctx) => AddPlaceScreen(),
+        },
       ),
     );
   }
