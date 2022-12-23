@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 // import 'package:location/location.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:learn_udemy/greatPlaces/helpers/location_helper.dart';
 
 class LocationInput extends StatefulWidget {
   const LocationInput({super.key});
@@ -58,6 +59,11 @@ class _LocationInputState extends State<LocationInput> {
     );
     print(position.latitude);
     print(position.longitude);
+    final staticMapImageUrl = LocationHelper.generateLocationPreviewImage(
+        latitude: position.latitude, longitude: position.longitude);
+    setState(() {
+      _previewImageUrl = staticMapImageUrl;
+    });
   }
 
   @override
