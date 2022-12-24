@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './shop/shop_app_main.dart';
+import './chat/chat_app_main.dart';
 
 import './meals/meals_main.dart';
 import './greatPlaces/great_places_app_main.dart';
@@ -102,6 +103,47 @@ ThemeData shopTheme() {
   return theme;
 }
 
+ThemeData chatTheme() {
+  final theme = ThemeData(
+    primarySwatch: Colors.purple,
+    // pageTransitionsTheme: PageTransitionsTheme(builders: {
+    //   TargetPlatform.android: CustomPageTransistionBuilder(),
+    //   TargetPlatform.iOS: CustomPageTransistionBuilder(),
+    // }),
+    colorScheme: ColorScheme.fromSwatch().copyWith(
+      primary: Colors.purple,
+      secondary: Colors.deepOrange,
+    ),
+    canvasColor: const Color.fromRGBO(255, 254, 229, 1),
+    fontFamily: 'Lato',
+    textTheme: ThemeData.light().textTheme.copyWith(
+          bodyText1: const TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
+          bodyText2: const TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
+          headline6: const TextStyle(
+            fontFamily: 'Anton',
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+    buttonTheme: const ButtonThemeData(
+      textTheme: ButtonTextTheme.normal,
+      buttonColor: Colors.white,
+    ),
+    primaryTextTheme: TextTheme(
+      headline6: TextStyle(color: Colors.white),
+    ),
+    errorColor: Colors.red,
+    appBarTheme: const AppBarTheme(
+      titleTextStyle: TextStyle(
+        fontFamily: 'Lato',
+        fontWeight: FontWeight.bold,
+        fontSize: 20,
+      ),
+    ),
+  );
+  return theme;
+}
+
 ThemeData greatPlacesTheme() {
   final theme = ThemeData(
     primarySwatch: Colors.indigo,
@@ -150,9 +192,9 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: greatPlacesTheme(),
+      theme: chatTheme(),
       debugShowCheckedModeBanner: false,
-      home: GreatPlacesApp(),
+      home: ChatApp(),
     );
   }
 }
