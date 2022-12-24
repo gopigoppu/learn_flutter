@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:learn_udemy/greatPlaces/models/place.dart';
+import 'package:learn_udemy/greatPlaces/screens/place_detail_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../main.dart';
@@ -26,6 +28,7 @@ class _GreatPlacesAppState extends State<GreatPlacesApp> {
         theme: greatPlacesTheme(),
         routes: {
           AddPlaceScreen.routeName: (ctx) => AddPlaceScreen(),
+          PlaceDetailScreen.routeName: (ctx) => PlaceDetailScreen(),
         },
       ),
     );
