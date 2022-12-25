@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "588928184839",
+    "firebase_url": "https://learn-flutter-743af-default-rtdb.firebaseio.com",
+    "project_id": "learn-flutter-743af",
+    "storage_bucket": "learn-flutter-743af.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:588928184839:android:40623897cc8ba052a170a2",
+        "android_client_info": {
+          "package_name": "com.example.learn_udemy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "588928184839-1nf4njbsqleg1afcoc41lfj71de3ocr2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBN1wHxTR5gAZN9lhf_lUifTc_VUl_I2jQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "588928184839-1nf4njbsqleg1afcoc41lfj71de3ocr2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>588928184839-n5uuml8hg748kr8lbkivvbnoktrejn08.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.588928184839-n5uuml8hg748kr8lbkivvbnoktrejn08</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAmSQ8WMkcHzkYIuukZ_gy9JhYY92epQ0Y</string>
+	<key>GCM_SENDER_ID</key>
+	<string>588928184839</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.learnUdemy</string>
+	<key>PROJECT_ID</key>
+	<string>learn-flutter-743af</string>
+	<key>STORAGE_BUCKET</key>
+	<string>learn-flutter-743af.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:588928184839:ios:11f167c07caeee2ca170a2</string>
+	<key>DATABASE_URL</key>
+	<string>https://learn-flutter-743af-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>

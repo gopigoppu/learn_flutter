@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learn_udemy/chat/screens/chat_screen.dart';
 import 'package:learn_udemy/main.dart';
 
 class ChatApp extends StatefulWidget {
@@ -14,14 +15,7 @@ class _ChatAppState extends State<ChatApp> {
     return MaterialApp(
       title: 'ChatApp',
       theme: chatTheme(),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Chat'),
-        ),
-        body: Center(
-          child: Text('chat'),
-        ),
-      ),
+      home: ChatScreen(),
     );
   }
 }

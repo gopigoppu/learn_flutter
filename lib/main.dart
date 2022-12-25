@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import './shop/shop_app_main.dart';
 import './chat/chat_app_main.dart';
@@ -6,11 +7,13 @@ import './meals/meals_main.dart';
 import './greatPlaces/great_places_app_main.dart';
 import 'shop/helpers/custom_route.dart';
 
-void main() {
+Future<void> main() async {
   // WidgetsFlutterBinding.ensureInitialized();
   // SystemChrome.setPreferredOrientations(
   //   [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
   // );
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
