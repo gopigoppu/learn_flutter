@@ -15,7 +15,7 @@ class _ChatAppState extends State<ChatApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'ChatApp',
-      theme: chatTheme(),
+      theme: chatTheme(context),
       home: AuthScreen(),
     );
   }

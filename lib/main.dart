@@ -106,16 +106,18 @@ ThemeData shopTheme() {
   return theme;
 }
 
-ThemeData chatTheme() {
+ThemeData chatTheme(context) {
   final theme = ThemeData(
-    primarySwatch: Colors.purple,
+    primarySwatch: Colors.pink,
+    backgroundColor: Colors.pink,
     // pageTransitionsTheme: PageTransitionsTheme(builders: {
     //   TargetPlatform.android: CustomPageTransistionBuilder(),
     //   TargetPlatform.iOS: CustomPageTransistionBuilder(),
     // }),
     colorScheme: ColorScheme.fromSwatch().copyWith(
-      primary: Colors.purple,
-      secondary: Colors.deepOrange,
+      primary: Colors.pink,
+      secondary: Colors.deepPurple,
+      brightness: Brightness.light,
     ),
     canvasColor: const Color.fromRGBO(255, 254, 229, 1),
     fontFamily: 'Lato',
@@ -129,8 +131,18 @@ ThemeData chatTheme() {
           ),
         ),
     buttonTheme: const ButtonThemeData(
-      textTheme: ButtonTextTheme.normal,
-      buttonColor: Colors.white,
+      textTheme: ButtonTextTheme.primary,
+      buttonColor: Colors.pink,
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.resolveWith<Color>(
+              (states) => Theme.of(context).primaryColor),
+          shape: MaterialStateProperty.resolveWith<OutlinedBorder>((_) {
+            return RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            );
+          })),
     ),
     primaryTextTheme: TextTheme(
       headline6: TextStyle(color: Colors.white),
@@ -195,7 +207,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: chatTheme(),
+      theme: chatTheme(context),
       debugShowCheckedModeBanner: false,
       home: ChatApp(),
     );
