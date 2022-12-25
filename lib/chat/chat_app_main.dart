@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:learn_udemy/chat/screens/chat_screen.dart';
-import 'package:learn_udemy/main.dart';
+import './screens/auth_screen.dart';
+import './screens/chat_screen.dart';
+import '../main.dart';
 
 class ChatApp extends StatefulWidget {
   const ChatApp({super.key});
@@ -15,7 +16,7 @@ class _ChatAppState extends State<ChatApp> {
     return MaterialApp(
       title: 'ChatApp',
       theme: chatTheme(),
-      home: ChatScreen(),
+      home: AuthScreen(),
     );
   }
 }
