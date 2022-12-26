@@ -16,6 +16,7 @@ class _ChatAppState extends State<ChatApp> {
     return MaterialApp(
       title: 'ChatApp',
       theme: chatTheme(context),
+      debugShowCheckedModeBanner: false,
       home: AuthScreen(),
     );
   }
