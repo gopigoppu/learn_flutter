@@ -124,6 +124,12 @@ ThemeData chatTheme(context) {
     textTheme: ThemeData.light().textTheme.copyWith(
           bodyText1: const TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
           bodyText2: const TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
+          headline1: const TextStyle(
+            fontFamily: 'Anton',
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
           headline6: const TextStyle(
             fontFamily: 'Anton',
             fontSize: 20,
@@ -171,6 +177,12 @@ ThemeData greatPlacesTheme() {
     textTheme: ThemeData.light().textTheme.copyWith(
           bodyText1: const TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
           bodyText2: const TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
+          headline1: const TextStyle(
+            fontFamily: 'Anton',
+            fontSize: 10,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
           headline6: const TextStyle(
             fontFamily: 'Anton',
             fontSize: 20,
