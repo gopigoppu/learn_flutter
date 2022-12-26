@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:learn_udemy/chat/widgets/chat/messages.dart';
 
 class ChatScreen extends StatelessWidget {
   final Stream<QuerySnapshot> _chatMessagesStream = FirebaseFirestore.instance
@@ -14,7 +15,7 @@ class ChatScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('chat'),
+        title: Text('chats'),
         actions: [
           DropdownButton(
             icon: Icon(
@@ -45,25 +46,32 @@ class ChatScreen extends StatelessWidget {
           )
         ],
       ),
-      body: StreamBuilder(
-        stream: _chatMessagesStream,
-        builder: (ctx, streamSnapshot) {
-          if (streamSnapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          final documents = streamSnapshot.data!.docs;
-          return ListView.builder(
-            itemBuilder: ((context, index) => Container(
-                  padding: EdgeInsets.all(8),
-                  child:
-                      Text((documents[index].data() as Map)['text'] as String),
-                )),
-            itemCount: documents.length ?? 0,
-          );
-        },
+      body: Container(
+        child: Column(
+          children: [
+            Expanded(child: Messages()),
+          ],
+        ),
       ),
+      // body: StreamBuilder(
+      //   stream: _chatMessagesStream,
+      //   builder: (ctx, streamSnapshot) {
+      //     if (streamSnapshot.connectionState == ConnectionState.waiting) {
+      //       return Center(
+      //         child: CircularProgressIndicator(),
+      //       );
+      //     }
+      //     final documents = streamSnapshot.data!.docs;
+      //     return ListView.builder(
+      //       itemBuilder: ((context, index) => Container(
+      //             padding: EdgeInsets.all(8),
+      //             child:
+      //                 Text((documents[index].data() as Map)['text'] as String),
+      //           )),
+      //       itemCount: documents.length,
+      //     );
+      //   },
+      // ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () async {
