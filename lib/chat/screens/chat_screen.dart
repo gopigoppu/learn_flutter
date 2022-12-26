@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:learn_udemy/chat/widgets/chat/messages.dart';
+import 'package:learn_udemy/chat/widgets/chat/new_message.dart';
 
 class ChatScreen extends StatelessWidget {
   final Stream<QuerySnapshot> _chatMessagesStream = FirebaseFirestore.instance
@@ -49,7 +50,10 @@ class ChatScreen extends StatelessWidget {
       body: Container(
         child: Column(
           children: [
+            // Messages(),
             Expanded(child: Messages()),
+            // Text('asdg'),
+            NewMessage(),
           ],
         ),
       ),
@@ -72,28 +76,28 @@ class ChatScreen extends StatelessWidget {
       //     );
       //   },
       // ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () async {
-          final CollectionReference _chatMessagesCollection = FirebaseFirestore
-              .instance
-              .collection('chats/mqOOhAzlIeG97FJbOHvp/messages');
-          await _chatMessagesCollection
-              .add({'text': 'New one by button click'}).then(
-                  (value) => print(value));
+      // floatingActionButton: FloatingActionButton(
+      //   child: Icon(Icons.add),
+      //   onPressed: () async {
+      //     final CollectionReference _chatMessagesCollection = FirebaseFirestore
+      //         .instance
+      //         .collection('chats/mqOOhAzlIeG97FJbOHvp/messages');
+      //     await _chatMessagesCollection
+      //         .add({'text': 'New one by button click'}).then(
+      //             (value) => print(value));
 
-          // await Firebase.initializeApp();
-          // FirebaseFirestore firestore = FirebaseFirestore.instance;
-          // firestore
-          //     .collection('chats/mqOOhAzlIeG97FJbOHvp/messages')
-          //     .snapshots()
-          //     .listen(
-          //   (data) {
-          //     print(data.docs);
-          //   },
-          // );
-        },
-      ),
+      //     // await Firebase.initializeApp();
+      //     // FirebaseFirestore firestore = FirebaseFirestore.instance;
+      //     // firestore
+      //     //     .collection('chats/mqOOhAzlIeG97FJbOHvp/messages')
+      //     //     .snapshots()
+      //     //     .listen(
+      //     //   (data) {
+      //     //     print(data.docs);
+      //     //   },
+      //     // );
+      //   },
+      // ),
     );
   }
 }
