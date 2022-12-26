@@ -38,10 +38,11 @@ class Messages extends StatelessWidget {
                     // String chat = chatDocs;
                     // print("$chat['text'], $chat['userId']");
                     // return Text('as');
-                    print(chatDocs[index].id);
+                    // print(chatDocs[index].id);
 
                     return MessageBubble(
                       chat['text'],
+                      chat['username'],
                       chat['userId'] == futureSnapshot.data!.uid,
                       key: ValueKey(chatDocs[index].id),
                     );
