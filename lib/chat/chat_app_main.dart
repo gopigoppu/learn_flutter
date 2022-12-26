@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import './screens/auth_screen.dart';
 import './screens/chat_screen.dart';
@@ -17,7 +19,15 @@ class _ChatAppState extends State<ChatApp> {
       title: 'ChatApp',
       theme: chatTheme(context),
       debugShowCheckedModeBanner: false,
-      home: AuthScreen(),
+      home: StreamBuilder(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (ctx, userSnapshot) {
+          if (userSnapshot.hasData) {
+            return ChatScreen();
+          }
+          return AuthScreen();
+        },
+      ),
     );
   }
 }

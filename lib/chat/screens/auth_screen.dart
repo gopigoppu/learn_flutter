@@ -13,16 +13,20 @@ class AuthScreen extends StatefulWidget {
 
 class _AuthScreenState extends State<AuthScreen> {
   final _auth = FirebaseAuth.instance;
+  bool _isLoading = false;
 
   void _submitAuthForm(
     String email,
-    String password,
     String username,
+    String password,
     bool isLogin,
     BuildContext ctx,
   ) async {
     UserCredential authResult;
     try {
+      setState(() {
+        _isLoading = true;
+      });
       if (isLogin) {
         authResult = await _auth.signInWithEmailAndPassword(
           email: email,
@@ -35,7 +39,13 @@ class _AuthScreenState extends State<AuthScreen> {
           password: password,
         );
 
-        FirebaseFirestore.instance.collection('users');
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(authResult.user!.uid)
+            .set({
+          'username': username,
+          'email': email,
+        });
       }
     } on FirebaseAuthException catch (err) {
       String message = 'An error occured, please check your credentials!';
@@ -47,7 +57,13 @@ class _AuthScreenState extends State<AuthScreen> {
         duration: Duration(seconds: 2),
         backgroundColor: Theme.of(ctx).errorColor,
       ));
+      setState(() {
+        _isLoading = false;
+      });
     } catch (error) {
+      setState(() {
+        _isLoading = false;
+      });
       print(error);
     }
   }
@@ -59,6 +75,6 @@ class _AuthScreenState extends State<AuthScreen> {
         //   title: Text('Login/Signup'),
         // ),
         backgroundColor: Theme.of(context).primaryColor,
-        body: AuthForm(_submitAuthForm));
+        body: AuthForm(_submitAuthForm, _isLoading));
   }
 }
